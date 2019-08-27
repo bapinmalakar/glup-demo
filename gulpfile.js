@@ -97,11 +97,17 @@ function watch(done) { // watch changes of each file, in if change found then ru
     done();
 }
 
-exports.images = images; // command is=> gulp images
 
-exports.build_project = gulp.series(imagesProcess, cssProcess, jsProcess, htmlProcess);
+exports.js = jsProcess; // only process js
 
-exports.build_project = watch; // command is=> gulp build_project
+exports.images = imagesProcess; // only process images
+
+exports.html = htmlProcess; // only process html
+
+exports.css = cssProcess; // only process scss
+
+
+exports.build_app = gulp.series(imagesProcess, cssProcess, jsProcess, htmlProcess);
 
 // define default
-exports.default = watch; // command is=> gulp
+exports.default = watch; // command is=> gulp, process all task and look for any chnages, if found changes then build again
